@@ -25,15 +25,27 @@ class User(Base):
     full_name: Mapped[str]
     login: Mapped[str]
     password: Mapped[str]
+    states: Mapped[list["BookStateModel"]] = relationship()
 
 
 class Book(Base):
     __tablename__ = 'books'
     id: Mapped[int] = mapped_column(primary_key=True)
     category: Mapped[Language]
+    genre: Mapped[Language]
     title: Mapped[str]
     pages: Mapped[int]
+    chapters: Mapped[list["Chapter"]] = relationship()
     summary: Mapped[str | None]
+
+
+class Chapter(Base):
+    __tablename__ = 'chapters'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str]
+    book_id: Mapped[int] = mapped_column(ForeignKey('books.id'))
+    start_page: Mapped[int]
+    end_page: Mapped[int]
 
 
 class BookStateModel(Base):

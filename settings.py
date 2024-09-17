@@ -6,9 +6,9 @@ class DbSettings(BaseSettings):
     PORT: str
     HOST: str
     DATABASE: str
-    USER: str
+    USERNAME: str
     PASSWORD: str
+    DATABASE_URL: str
 
     class Config:
         env_file = ".env"
-
