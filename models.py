@@ -12,7 +12,7 @@ from sqlalchemy.ext.asyncio import (
     AsyncAttrs
 )
 
-from app_types import Language
+from app_types import Genre, Language
 
 
 class Base(AsyncAttrs, DeclarativeBase):
@@ -32,7 +32,7 @@ class Book(Base):
     __tablename__ = 'books'
     id: Mapped[int] = mapped_column(primary_key=True)
     category: Mapped[Language]
-    genre: Mapped[Language]
+    genre: Mapped[Genre]
     title: Mapped[str]
     pages: Mapped[int]
     chapters: Mapped[list["Chapter"]] = relationship()
